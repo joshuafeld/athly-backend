@@ -5,8 +5,6 @@ import com.joshuafeld.athly.common.dto.user.UserResponseDto;
 import com.joshuafeld.athly.common.dto.user.UserUpdateDto;
 import com.joshuafeld.athly.user.service.UserService;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,34 +25,30 @@ public final class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseDto> create(
-            @RequestBody @Valid final UserCreateDto user
-    ) {
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(service.create(user));
+    public UserResponseDto create(@RequestBody @Valid final UserCreateDto dto) {
+        return service.create(dto);
     }
 
     @GetMapping
-    public ResponseEntity<List<UserResponseDto>> read() {
-        return ResponseEntity.ok(service.getAll());
+    public List<UserResponseDto> read() {
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponseDto> read(@PathVariable final long id) {
-        return ResponseEntity.ok(service.get(id));
+    public UserResponseDto read(@PathVariable final long id) {
+        return service.get(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponseDto> update(
+    public UserResponseDto update(
             @PathVariable final long id,
             @RequestBody @Valid final UserUpdateDto user
     ) {
-        return ResponseEntity.ok(service.update(id, user));
+        return service.update(id, user);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable final long id) {
+    public void delete(@PathVariable final long id) {
         service.delete(id);
-        return ResponseEntity.noContent().build();
     }
 }
