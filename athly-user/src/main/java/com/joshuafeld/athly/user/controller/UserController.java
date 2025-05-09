@@ -15,38 +15,74 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * A user controller.
+ */
 @RestController
 public final class UserController {
 
     private final UserService service;
 
+
+    /**
+     * Creates an instance of a {@code User} class.
+     *
+     * @param service the value for the {@code service} component
+     */
     public UserController(final UserService service) {
         this.service = service;
     }
 
+    /**
+     * Creates a new user.
+     *
+     * @param dto the data for the user
+     * @return the data of the user
+     */
     @PostMapping
     public UserResponseDto create(@RequestBody @Valid final UserCreateDto dto) {
         return service.create(dto);
     }
 
+    /**
+     * Returns the data of all users.
+     *
+     * @return a list of all users' data
+     */
     @GetMapping
     public List<UserResponseDto> read() {
         return service.getAll();
     }
 
+    /**
+     * Returns the data of the user with the given id.
+     *
+     * @param id the id of the user
+     * @return the data of the user
+     */
     @GetMapping("/{id}")
     public UserResponseDto read(@PathVariable final long id) {
         return service.get(id);
     }
 
+    /**
+     * Updates the data of the user with the given id.
+     *
+     * @param id the id of the user
+     * @param dto the data for the user
+     * @return the data of the user
+     */
     @PutMapping("/{id}")
-    public UserResponseDto update(
-            @PathVariable final long id,
-            @RequestBody @Valid final UserUpdateDto user
-    ) {
-        return service.update(id, user);
+    public UserResponseDto update(@PathVariable final long id,
+                                  @RequestBody @Valid final UserUpdateDto dto) {
+        return service.update(id, dto);
     }
 
+    /**
+     * Deletes the data of the user with the given id.
+     *
+     * @param id the id of the user
+     */
     @DeleteMapping("/{id}")
     public void delete(@PathVariable final long id) {
         service.delete(id);
