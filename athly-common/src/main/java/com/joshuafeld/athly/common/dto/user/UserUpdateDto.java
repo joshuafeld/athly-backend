@@ -1,5 +1,6 @@
 package com.joshuafeld.athly.common.dto.user;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 
 /**
@@ -8,9 +9,13 @@ import jakarta.validation.constraints.Email;
 public final class UserUpdateDto {
 
     @Email
+    @JsonProperty
     private String email;
 
+    @JsonProperty
     private String firstName;
+
+    @JsonProperty
     private String lastName;
 
     /**
