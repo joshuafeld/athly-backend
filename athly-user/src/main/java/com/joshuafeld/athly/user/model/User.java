@@ -73,7 +73,7 @@ public final class User {
     /**
      * Sets the value of the {@code username} component.
      *
-     * @param username the value for the {@code username} component.
+     * @param username the value for the {@code username} component
      */
     public void username(final String username) {
         this.username = username;
@@ -91,7 +91,7 @@ public final class User {
     /**
      * Sets the value of the {@code email} component.
      *
-     * @param email the value for the {@code email} component.
+     * @param email the value for the {@code email} component
      */
     public void email(final String email) {
         this.email = email;
@@ -109,7 +109,7 @@ public final class User {
     /**
      * Sets the value of the {@code firstName} component.
      *
-     * @param firstName the value for the {@code firstName} component.
+     * @param firstName the value for the {@code firstName} component
      */
     public void firstName(final String firstName) {
         this.firstName = firstName;
@@ -127,7 +127,7 @@ public final class User {
     /**
      * Sets the value of the {@code lastName} component.
      *
-     * @param lastName the value for the {@code lastName} component.
+     * @param lastName the value for the {@code lastName} component
      */
     public void lastName(final String lastName) {
         this.lastName = lastName;

@@ -23,7 +23,6 @@ public final class UserController {
 
     private final UserService service;
 
-
     /**
      * Creates an instance of a {@code User} class.
      *
