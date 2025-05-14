@@ -1,8 +1,8 @@
 package com.joshuafeld.athly.user.controller;
 
-import com.joshuafeld.athly.common.dto.user.UserCreateDto;
+import com.joshuafeld.athly.common.dto.user.UserPostDto;
 import com.joshuafeld.athly.common.dto.user.UserDto;
-import com.joshuafeld.athly.common.dto.user.UserUpdateDto;
+import com.joshuafeld.athly.common.dto.user.UserPutDto;
 import com.joshuafeld.athly.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -39,8 +39,8 @@ public final class UserController {
      * @return the data of the user
      */
     @PostMapping
-    public UserDto create(@RequestBody @Valid final UserCreateDto dto) {
-        return service.create(dto);
+    public UserDto post(@RequestBody @Valid final UserPostDto dto) {
+        return service.post(dto);
     }
 
     /**
@@ -49,8 +49,8 @@ public final class UserController {
      * @return a list of all users' data
      */
     @GetMapping
-    public List<UserDto> read() {
-        return service.getAll();
+    public List<UserDto> get() {
+        return service.get();
     }
 
     /**
@@ -60,7 +60,7 @@ public final class UserController {
      * @return the data of the user
      */
     @GetMapping("/{id}")
-    public UserDto read(@PathVariable final Long id) {
+    public UserDto get(@PathVariable final Long id) {
         return service.get(id);
     }
 
@@ -72,9 +72,9 @@ public final class UserController {
      * @return the data of the user
      */
     @PutMapping("/{id}")
-    public UserDto update(@PathVariable final Long id,
-                          @RequestBody @Valid final UserUpdateDto dto) {
-        return service.update(id, dto);
+    public UserDto put(@PathVariable final Long id,
+                       @RequestBody @Valid final UserPutDto dto) {
+        return service.put(id, dto);
     }
 
     /**

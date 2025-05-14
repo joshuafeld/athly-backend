@@ -2,21 +2,15 @@ package com.joshuafeld.athly.common.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
 
 import java.util.Objects;
 
 /**
- * A data transfer object for creating a user.
+ * A data transfer object for a user put request.
  */
-public final class UserCreateDto {
-
-    @NotBlank
-    @JsonProperty
-    private String username;
+public final class UserPutDto {
 
     @Email
-    @NotBlank
     @JsonProperty
     private String email;
 
@@ -25,24 +19,6 @@ public final class UserCreateDto {
 
     @JsonProperty
     private String lastName;
-
-    /**
-     * Returns the value of the {@code username} component.
-     *
-     * @return the value of the {@code username} component
-     */
-    public String username() {
-        return username;
-    }
-
-    /**
-     * Sets the value of the {@code username} component.
-     *
-     * @param username the value for the {@code username} component
-     */
-    public void username(final String username) {
-        this.username = username;
-    }
 
     /**
      * Returns the value of the {@code email} component.
@@ -115,11 +91,10 @@ public final class UserCreateDto {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof UserCreateDto dto)) {
+        if (!(o instanceof UserPutDto dto)) {
             return false;
         }
-        return Objects.equals(username, dto.username)
-                && Objects.equals(email, dto.email)
+        return Objects.equals(email, dto.email)
                 && Objects.equals(firstName, dto.firstName)
                 && Objects.equals(lastName, dto.lastName);
     }
@@ -132,7 +107,7 @@ public final class UserCreateDto {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(username, email, firstName, lastName);
+        return Objects.hash(email, firstName, lastName);
     }
 
     /**
@@ -144,9 +119,8 @@ public final class UserCreateDto {
      */
     @Override
     public String toString() {
-        return "UserCreateDto["
-                + "username=" + username
-                + ", email=" + email
+        return "UserUpdateDto["
+                + "email=" + email
                 + ", firstName=" + firstName
                 + ", lastName=" + lastName
                 + "]";

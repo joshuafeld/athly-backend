@@ -1,8 +1,8 @@
 package com.joshuafeld.athly.user.service;
 
-import com.joshuafeld.athly.common.dto.user.UserCreateDto;
+import com.joshuafeld.athly.common.dto.user.UserPostDto;
 import com.joshuafeld.athly.common.dto.user.UserDto;
-import com.joshuafeld.athly.common.dto.user.UserUpdateDto;
+import com.joshuafeld.athly.common.dto.user.UserPutDto;
 import com.joshuafeld.athly.user.model.User;
 import com.joshuafeld.athly.user.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -33,7 +33,7 @@ public final class UserService {
      * @param dto the data for the user
      * @return the data of the user
      */
-    public UserDto create(final UserCreateDto dto) {
+    public UserDto post(final UserPostDto dto) {
         return toDto(repository.save(new User(dto.username(), dto.email(),
                 dto.firstName(), dto.lastName())));
     }
@@ -43,7 +43,7 @@ public final class UserService {
      *
      * @return a list of all users' data
      */
-    public List<UserDto> getAll() {
+    public List<UserDto> get() {
         return repository.findAll().stream().map(this::toDto).toList();
     }
 
@@ -65,7 +65,7 @@ public final class UserService {
      * @param dto the data for the user
      * @return the data of the user
      */
-    public UserDto update(final Long id, final UserUpdateDto dto) {
+    public UserDto put(final Long id, final UserPutDto dto) {
         User user = repository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
         if (dto.email() != null) {
