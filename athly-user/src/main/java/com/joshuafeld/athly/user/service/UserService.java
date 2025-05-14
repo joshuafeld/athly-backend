@@ -1,7 +1,7 @@
 package com.joshuafeld.athly.user.service;
 
 import com.joshuafeld.athly.common.dto.user.UserCreateDto;
-import com.joshuafeld.athly.common.dto.user.UserResponseDto;
+import com.joshuafeld.athly.common.dto.user.UserDto;
 import com.joshuafeld.athly.common.dto.user.UserUpdateDto;
 import com.joshuafeld.athly.user.model.User;
 import com.joshuafeld.athly.user.repository.UserRepository;
@@ -33,7 +33,7 @@ public final class UserService {
      * @param dto the data for the user
      * @return the data of the user
      */
-    public UserResponseDto create(final UserCreateDto dto) {
+    public UserDto create(final UserCreateDto dto) {
         return toDto(repository.save(new User(dto.username(), dto.email(),
                 dto.firstName(), dto.lastName())));
     }
@@ -43,7 +43,7 @@ public final class UserService {
      *
      * @return a list of all users' data
      */
-    public List<UserResponseDto> getAll() {
+    public List<UserDto> getAll() {
         return repository.findAll().stream().map(this::toDto).toList();
     }
 
@@ -53,7 +53,7 @@ public final class UserService {
      * @param id the id of the user
      * @return the data of the user
      */
-    public UserResponseDto get(final long id) {
+    public UserDto get(final long id) {
         return repository.findById(id).map(this::toDto)
                 .orElseThrow(EntityNotFoundException::new);
     }
@@ -65,7 +65,7 @@ public final class UserService {
      * @param dto the data for the user
      * @return the data of the user
      */
-    public UserResponseDto update(final long id, final UserUpdateDto dto) {
+    public UserDto update(final long id, final UserUpdateDto dto) {
         User user = repository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
         if (dto.email() != null) {
@@ -89,8 +89,8 @@ public final class UserService {
         repository.deleteById(id);
     }
 
-    private UserResponseDto toDto(final User user) {
-        return new UserResponseDto(
+    private UserDto toDto(final User user) {
+        return new UserDto(
                 user.id(),
                 user.username(),
                 user.email(),

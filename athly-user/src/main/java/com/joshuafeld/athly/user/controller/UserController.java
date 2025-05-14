@@ -1,7 +1,7 @@
 package com.joshuafeld.athly.user.controller;
 
 import com.joshuafeld.athly.common.dto.user.UserCreateDto;
-import com.joshuafeld.athly.common.dto.user.UserResponseDto;
+import com.joshuafeld.athly.common.dto.user.UserDto;
 import com.joshuafeld.athly.common.dto.user.UserUpdateDto;
 import com.joshuafeld.athly.user.service.UserService;
 import jakarta.validation.Valid;
@@ -39,7 +39,7 @@ public final class UserController {
      * @return the data of the user
      */
     @PostMapping
-    public UserResponseDto create(@RequestBody @Valid final UserCreateDto dto) {
+    public UserDto create(@RequestBody @Valid final UserCreateDto dto) {
         return service.create(dto);
     }
 
@@ -49,7 +49,7 @@ public final class UserController {
      * @return a list of all users' data
      */
     @GetMapping
-    public List<UserResponseDto> read() {
+    public List<UserDto> read() {
         return service.getAll();
     }
 
@@ -60,7 +60,7 @@ public final class UserController {
      * @return the data of the user
      */
     @GetMapping("/{id}")
-    public UserResponseDto read(@PathVariable final long id) {
+    public UserDto read(@PathVariable final long id) {
         return service.get(id);
     }
 
@@ -72,8 +72,8 @@ public final class UserController {
      * @return the data of the user
      */
     @PutMapping("/{id}")
-    public UserResponseDto update(@PathVariable final long id,
-                                  @RequestBody @Valid final UserUpdateDto dto) {
+    public UserDto update(@PathVariable final long id,
+                          @RequestBody @Valid final UserUpdateDto dto) {
         return service.update(id, dto);
     }
 
