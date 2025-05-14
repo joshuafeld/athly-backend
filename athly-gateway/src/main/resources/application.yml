@@ -10,18 +10,18 @@ spring:
         - id: athly-user
           uri: http://localhost:8081
           predicates:
-            - Path=/user/**
+            - Path=/api/users/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
         - id: athly-workout
           uri: http://localhost:8082
           predicates:
-            - Path=/workout/**
+            - Path=/api/workouts/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
         - id: athly-nutrition
           uri: http://localhost:8083
           predicates:
-            - Path=/nutrition/**
+            - Path=/api/nutrition/**
           filters:
-            - StripPrefix=1
+            - StripPrefix=2
