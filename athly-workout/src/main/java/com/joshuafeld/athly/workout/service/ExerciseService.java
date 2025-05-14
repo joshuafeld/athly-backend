@@ -1,0 +1,115 @@
+package com.joshuafeld.athly.workout.service;
+
+import com.joshuafeld.athly.common.dto.workout.ExerciseDto;
+import com.joshuafeld.athly.common.dto.workout.ExercisePatchDto;
+import com.joshuafeld.athly.common.dto.workout.ExercisePostDto;
+import com.joshuafeld.athly.common.dto.workout.ExercisePutDto;
+import com.joshuafeld.athly.workout.model.Exercise;
+import com.joshuafeld.athly.workout.repository.ExerciseRepository;
+import jakarta.persistence.EntityNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * A exercise service.
+ */
+@Service
+public final class ExerciseService {
+
+    private final ExerciseRepository repository;
+
+    /**
+     * Creates an instance of a {@code ExerciseService} class.
+     *
+     * @param repository the value for the {@code repository} component
+     */
+    public ExerciseService(final ExerciseRepository repository) {
+        this.repository = repository;
+    }
+
+    /**
+     * Creates a new exercise.
+     *
+     * @param dto the data for the exercise
+     * @return the data of the exercise
+     */
+    public ExerciseDto post(final ExercisePostDto dto) {
+        return toDto(repository.save(new Exercise(dto.name(), dto.equipment(),
+                dto.muscle(), dto.creator())));
+    }
+
+    /**
+     * Returns the data of all exercises.
+     *
+     * @return a list of all exercises' data
+     */
+    public List<ExerciseDto> get() {
+        return repository.findAll().stream().map(this::toDto).toList();
+    }
+
+    /**
+     * Returns the data of the exercise with the given id.
+     *
+     * @param id the id of the exercise
+     * @return the data of the exercise
+     */
+    public ExerciseDto get(final Long id) {
+        return repository.findById(id).map(this::toDto)
+                .orElseThrow(EntityNotFoundException::new);
+    }
+
+    /**
+     * Partially updates the data of the exercise with the given id.
+     *
+     * @param id the id of the exercise
+     * @param dto the data for the exercise
+     * @return the data of the exercise
+     */
+    public ExerciseDto patch(final Long id, final ExercisePatchDto dto) {
+        Exercise exercise = repository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        Optional.ofNullable(dto.name()).ifPresent(exercise::name);
+        Optional.ofNullable(dto.equipment()).ifPresent(exercise::equipment);
+        Optional.ofNullable(dto.muscle()).ifPresent(exercise::muscle);
+        Optional.ofNullable(dto.creator()).ifPresent(exercise::creator);
+        return toDto(repository.save(exercise));
+    }
+
+    /**
+     * Updates the data of the exercise with the given id.
+     *
+     * @param id the id of the exercise
+     * @param dto the data for the exercise
+     * @return the data of the exercise
+     */
+    public ExerciseDto put(final Long id, final ExercisePutDto dto) {
+        Exercise exercise = repository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        exercise.name(dto.name());
+        exercise.equipment(dto.equipment());
+        exercise.muscle(dto.muscle());
+        exercise.creator(dto.creator());
+        return toDto(repository.save(exercise));
+    }
+
+    /**
+     * Deletes the data of the exercise with the given id.
+     *
+     * @param id the id of the exercise
+     */
+    public void delete(final Long id) {
+        repository.deleteById(id);
+    }
+
+    private ExerciseDto toDto(final Exercise exercise) {
+        return new ExerciseDto(
+                exercise.id(),
+                exercise.name(),
+                exercise.equipment(),
+                exercise.muscle(),
+                exercise.creator()
+        );
+    }
+}
