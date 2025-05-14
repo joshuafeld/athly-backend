@@ -144,7 +144,7 @@ public final class UserPostDto {
      */
     @Override
     public String toString() {
-        return "UserCreateDto["
+        return "UserPostDto["
                 + "username=" + username
                 + ", email=" + email
                 + ", firstName=" + firstName
