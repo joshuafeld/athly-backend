@@ -29,7 +29,7 @@ public final class UserPatchDto {
      * @return the value of the {@code username} component
      */
     public String username() {
-        return email;
+        return username;
     }
 
     /**
