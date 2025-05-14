@@ -68,6 +68,9 @@ public final class UserService {
     public UserDto put(final Long id, final UserPutDto dto) {
         User user = repository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
+        if (dto.username() != null) {
+            user.username(dto.username());
+        }
         if (dto.email() != null) {
             user.email(dto.email());
         }

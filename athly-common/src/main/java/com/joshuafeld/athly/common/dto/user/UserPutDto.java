@@ -2,6 +2,7 @@ package com.joshuafeld.athly.common.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Objects;
 
@@ -9,6 +10,10 @@ import java.util.Objects;
  * A data transfer object for a user put request.
  */
 public final class UserPutDto {
+
+    @NotBlank
+    @JsonProperty
+    private String username;
 
     @Email
     @JsonProperty
@@ -19,6 +24,24 @@ public final class UserPutDto {
 
     @JsonProperty
     private String lastName;
+
+    /**
+     * Returns the value of the {@code username} component.
+     *
+     * @return the value of the {@code username} component
+     */
+    public String username() {
+        return email;
+    }
+
+    /**
+     * Sets the value of the {@code username} component.
+     *
+     * @param username the value for the {@code username} component
+     */
+    public void username(final String username) {
+        this.username = username;
+    }
 
     /**
      * Returns the value of the {@code email} component.
