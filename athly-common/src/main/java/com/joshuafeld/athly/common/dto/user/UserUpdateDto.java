@@ -119,7 +119,7 @@ public final class UserUpdateDto {
      */
     @Override
     public String toString() {
-        return "UserCreateDto["
+        return "UserUpdateDto["
                 + "email=" + email
                 + ", firstName=" + firstName
                 + ", lastName=" + lastName
