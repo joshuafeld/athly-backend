@@ -53,7 +53,7 @@ public final class UserService {
      * @param id the id of the user
      * @return the data of the user
      */
-    public UserDto get(final long id) {
+    public UserDto get(final Long id) {
         return repository.findById(id).map(this::toDto)
                 .orElseThrow(EntityNotFoundException::new);
     }
@@ -65,7 +65,7 @@ public final class UserService {
      * @param dto the data for the user
      * @return the data of the user
      */
-    public UserDto update(final long id, final UserUpdateDto dto) {
+    public UserDto update(final Long id, final UserUpdateDto dto) {
         User user = repository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
         if (dto.email() != null) {
@@ -85,7 +85,7 @@ public final class UserService {
      *
      * @param id the id of the user
      */
-    public void delete(final long id) {
+    public void delete(final Long id) {
         repository.deleteById(id);
     }
 

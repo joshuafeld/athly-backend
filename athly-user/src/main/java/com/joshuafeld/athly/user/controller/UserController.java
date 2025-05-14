@@ -24,7 +24,7 @@ public final class UserController {
     private final UserService service;
 
     /**
-     * Creates an instance of a {@code User} class.
+     * Creates an instance of a {@code UserController} class.
      *
      * @param service the value for the {@code service} component
      */
@@ -60,7 +60,7 @@ public final class UserController {
      * @return the data of the user
      */
     @GetMapping("/{id}")
-    public UserDto read(@PathVariable final long id) {
+    public UserDto read(@PathVariable final Long id) {
         return service.get(id);
     }
 
@@ -72,7 +72,7 @@ public final class UserController {
      * @return the data of the user
      */
     @PutMapping("/{id}")
-    public UserDto update(@PathVariable final long id,
+    public UserDto update(@PathVariable final Long id,
                           @RequestBody @Valid final UserUpdateDto dto) {
         return service.update(id, dto);
     }
@@ -83,7 +83,7 @@ public final class UserController {
      * @param id the id of the user
      */
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable final long id) {
+    public void delete(@PathVariable final Long id) {
         service.delete(id);
     }
 }

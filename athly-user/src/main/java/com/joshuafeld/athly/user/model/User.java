@@ -16,7 +16,7 @@ public final class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
     private String username;
@@ -57,7 +57,7 @@ public final class User {
      *
      * @return the value of the {@code id} component
      */
-    public long id() {
+    public Long id() {
         return id;
     }
 
