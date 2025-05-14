@@ -141,7 +141,7 @@ public final class UserPatchDto {
      */
     @Override
     public String toString() {
-        return "UserUpdateDto["
+        return "UserPatchDto["
                 + "username=" + username
                 + ", email=" + email
                 + ", firstName=" + firstName
