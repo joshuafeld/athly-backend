@@ -1,5 +1,6 @@
 package com.joshuafeld.athly.user.controller;
 
+import com.joshuafeld.athly.common.dto.user.UserPatchDto;
 import com.joshuafeld.athly.common.dto.user.UserPostDto;
 import com.joshuafeld.athly.common.dto.user.UserDto;
 import com.joshuafeld.athly.common.dto.user.UserPutDto;
@@ -7,6 +8,7 @@ import com.joshuafeld.athly.user.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -62,6 +64,19 @@ public final class UserController {
     @GetMapping("/{id}")
     public UserDto get(@PathVariable final Long id) {
         return service.get(id);
+    }
+
+    /**
+     * Partially updates the data of the user with the given id.
+     *
+     * @param id the id of the user
+     * @param dto the data for the user
+     * @return the data of the user
+     */
+    @PatchMapping("/{id}")
+    public UserDto patch(@PathVariable final Long id,
+                         @RequestBody @Valid final UserPatchDto dto) {
+        return service.patch(id, dto);
     }
 
     /**

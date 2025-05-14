@@ -1,5 +1,6 @@
 package com.joshuafeld.athly.user.service;
 
+import com.joshuafeld.athly.common.dto.user.UserPatchDto;
 import com.joshuafeld.athly.common.dto.user.UserPostDto;
 import com.joshuafeld.athly.common.dto.user.UserDto;
 import com.joshuafeld.athly.common.dto.user.UserPutDto;
@@ -9,6 +10,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * A user service.
@@ -59,6 +61,23 @@ public final class UserService {
     }
 
     /**
+     * Partially updates the data of the user with the given id.
+     *
+     * @param id the id of the user
+     * @param dto the data for the user
+     * @return the data of the user
+     */
+    public UserDto patch(final Long id, final UserPatchDto dto) {
+        User user = repository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+        Optional.ofNullable(dto.username()).ifPresent(user::username);
+        Optional.ofNullable(dto.email()).ifPresent(user::email);
+        Optional.ofNullable(dto.firstName()).ifPresent(user::firstName);
+        Optional.ofNullable(dto.lastName()).ifPresent(user::lastName);
+        return toDto(repository.save(user));
+    }
+
+    /**
      * Updates the data of the user with the given id.
      *
      * @param id the id of the user
@@ -68,18 +87,10 @@ public final class UserService {
     public UserDto put(final Long id, final UserPutDto dto) {
         User user = repository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
-        if (dto.username() != null) {
-            user.username(dto.username());
-        }
-        if (dto.email() != null) {
-            user.email(dto.email());
-        }
-        if (dto.firstName() != null) {
-            user.firstName(dto.firstName());
-        }
-        if (dto.lastName() != null) {
-            user.lastName(dto.lastName());
-        }
+        user.username(dto.username());
+        user.email(dto.email());
+        user.firstName(dto.firstName());
+        user.lastName(dto.lastName());
         return toDto(repository.save(user));
     }
 
