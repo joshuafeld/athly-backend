@@ -3,6 +3,8 @@ package com.joshuafeld.athly.common.dto.user;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.Email;
 
+import java.util.Objects;
+
 /**
  * A data transfer object for updating a user.
  */
@@ -70,5 +72,57 @@ public final class UserUpdateDto {
      */
     public void lastName(final String lastName) {
         this.lastName = lastName;
+    }
+
+    /**
+     * Indicates whether some other object is "equal to" this one. The objects
+     * are equal if the other object is of the same class and if all the
+     * components are equals. Reference components are compared with
+     * {@link Objects#equals(Object, Object)}; primitive components are
+     * compared with the {@code compare} method from their corresponding wrapper
+     * classes.
+     *
+     * @param o the object with which to compare
+     * @return {@code true} if this object is the same as the {@code o}
+     *         argument; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(final Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof UserUpdateDto dto)) {
+            return false;
+        }
+        return Objects.equals(email, dto.email)
+                && Objects.equals(firstName, dto.firstName)
+                && Objects.equals(lastName, dto.lastName);
+    }
+
+    /**
+     * Returns a hash code value for this object. The value is derived from the
+     * hash code of each of the components.
+     *
+     * @return a hash code value for this object
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(email, firstName, lastName);
+    }
+
+    /**
+     * Returns a string representation of this class. The representation
+     * contains the name of the class, followed by the name and value of each of
+     * the components.
+     *
+     * @return a string representation of this object
+     */
+    @Override
+    public String toString() {
+        return "UserCreateDto["
+                + "email=" + email
+                + ", firstName=" + firstName
+                + ", lastName=" + lastName
+                + "]";
     }
 }
