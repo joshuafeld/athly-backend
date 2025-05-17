@@ -4,9 +4,9 @@ import com.joshuafeld.athly.common.dto.workout.ExerciseDto;
 import com.joshuafeld.athly.common.dto.workout.ExercisePatchDto;
 import com.joshuafeld.athly.common.dto.workout.ExercisePostDto;
 import com.joshuafeld.athly.common.dto.workout.ExercisePutDto;
+import com.joshuafeld.athly.workout.exception.ExerciseNotFoundException;
 import com.joshuafeld.athly.workout.model.Exercise;
 import com.joshuafeld.athly.workout.repository.ExerciseRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,7 +57,7 @@ public final class ExerciseService {
      */
     public ExerciseDto get(final Long id) {
         return repository.findById(id).map(this::toDto)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new ExerciseNotFoundException(id));
     }
 
     /**
@@ -69,7 +69,7 @@ public final class ExerciseService {
      */
     public ExerciseDto patch(final Long id, final ExercisePatchDto dto) {
         Exercise exercise = repository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new ExerciseNotFoundException(id));
         Optional.ofNullable(dto.name()).ifPresent(exercise::name);
         Optional.ofNullable(dto.equipment()).ifPresent(exercise::equipment);
         Optional.ofNullable(dto.muscle()).ifPresent(exercise::muscle);
@@ -86,7 +86,7 @@ public final class ExerciseService {
      */
     public ExerciseDto put(final Long id, final ExercisePutDto dto) {
         Exercise exercise = repository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new ExerciseNotFoundException(id));
         exercise.name(dto.name());
         exercise.equipment(dto.equipment());
         exercise.muscle(dto.muscle());

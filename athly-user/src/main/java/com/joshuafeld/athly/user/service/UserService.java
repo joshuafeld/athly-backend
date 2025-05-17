@@ -4,9 +4,9 @@ import com.joshuafeld.athly.common.dto.user.UserPatchDto;
 import com.joshuafeld.athly.common.dto.user.UserPostDto;
 import com.joshuafeld.athly.common.dto.user.UserDto;
 import com.joshuafeld.athly.common.dto.user.UserPutDto;
+import com.joshuafeld.athly.user.exception.UserNotFoundException;
 import com.joshuafeld.athly.user.model.User;
 import com.joshuafeld.athly.user.repository.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -57,7 +57,7 @@ public final class UserService {
      */
     public UserDto get(final Long id) {
         return repository.findById(id).map(this::toDto)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new UserNotFoundException(id));
     }
 
     /**
@@ -69,7 +69,7 @@ public final class UserService {
      */
     public UserDto patch(final Long id, final UserPatchDto dto) {
         User user = repository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new UserNotFoundException(id));
         Optional.ofNullable(dto.username()).ifPresent(user::username);
         Optional.ofNullable(dto.email()).ifPresent(user::email);
         Optional.ofNullable(dto.firstName()).ifPresent(user::firstName);
@@ -86,7 +86,7 @@ public final class UserService {
      */
     public UserDto put(final Long id, final UserPutDto dto) {
         User user = repository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new UserNotFoundException(id));
         user.username(dto.username());
         user.email(dto.email());
         user.firstName(dto.firstName());
