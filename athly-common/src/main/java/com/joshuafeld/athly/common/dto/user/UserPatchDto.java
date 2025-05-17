@@ -1,6 +1,8 @@
 package com.joshuafeld.athly.common.dto.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.joshuafeld.athly.common.validation.Alphanumeric;
+import com.joshuafeld.athly.common.validation.Lowercase;
 import jakarta.validation.constraints.Email;
 
 import java.util.Objects;
@@ -10,6 +12,8 @@ import java.util.Objects;
  */
 public final class UserPatchDto {
 
+    @Alphanumeric
+    @Lowercase
     @JsonProperty
     private String username;
 
