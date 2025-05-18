@@ -1,4 +1,4 @@
-package com.joshuafeld.athly.common.dto.user;
+package com.joshuafeld.athly.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.joshuafeld.athly.common.validation.Alphanumeric;

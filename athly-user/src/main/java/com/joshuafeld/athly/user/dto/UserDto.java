@@ -1,4 +1,4 @@
-package com.joshuafeld.athly.common.dto.user;
+package com.joshuafeld.athly.user.dto;
 
 /**
  * A data transfer object for responses from the user service.

@@ -1,9 +1,9 @@
 package com.joshuafeld.athly.user.service;
 
-import com.joshuafeld.athly.common.dto.user.UserPatchDto;
-import com.joshuafeld.athly.common.dto.user.UserPostDto;
-import com.joshuafeld.athly.common.dto.user.UserDto;
-import com.joshuafeld.athly.common.dto.user.UserPutDto;
+import com.joshuafeld.athly.user.dto.UserPatchDto;
+import com.joshuafeld.athly.user.dto.UserPostDto;
+import com.joshuafeld.athly.user.dto.UserDto;
+import com.joshuafeld.athly.user.dto.UserPutDto;
 import com.joshuafeld.athly.user.exception.UserNotFoundException;
 import com.joshuafeld.athly.user.model.User;
 import com.joshuafeld.athly.user.repository.UserRepository;

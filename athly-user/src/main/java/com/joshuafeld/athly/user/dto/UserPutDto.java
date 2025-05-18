@@ -1,23 +1,26 @@
-package com.joshuafeld.athly.common.dto.user;
+package com.joshuafeld.athly.user.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.joshuafeld.athly.common.validation.Alphanumeric;
 import com.joshuafeld.athly.common.validation.Lowercase;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Objects;
 
 /**
- * A data transfer object for a user patch request.
+ * A data transfer object for a user put request.
  */
-public final class UserPatchDto {
+public final class UserPutDto {
 
     @Alphanumeric
     @Lowercase
+    @NotBlank
     @JsonProperty
     private String username;
 
     @Email
+    @NotBlank
     @JsonProperty
     private String email;
 
@@ -109,14 +112,14 @@ public final class UserPatchDto {
      *
      * @param o the object with which to compare
      * @return {@code true} if this object is the same as the {@code o}
-     * argument; {@code false} otherwise.
+     *         argument; {@code false} otherwise.
      */
     @Override
     public boolean equals(final Object o) {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof UserPatchDto dto)) {
+        if (!(o instanceof UserPutDto dto)) {
             return false;
         }
         return Objects.equals(username, dto.username)
@@ -145,7 +148,7 @@ public final class UserPatchDto {
      */
     @Override
     public String toString() {
-        return "UserPatchDto["
+        return "UserPutDto["
                 + "username=" + username
                 + ", email=" + email
                 + ", firstName=" + firstName
