@@ -60,8 +60,7 @@ public final class ExerciseService {
      */
     @Transactional(readOnly = true)
     public ExerciseDto get(final Long id) {
-        return repository.findById(id).map(this::toDto)
-                .orElseThrow(() -> new ExerciseNotFoundException(id));
+        return toDto(repository.requireById(id));
     }
 
     /**
@@ -73,8 +72,7 @@ public final class ExerciseService {
      */
     @Transactional
     public ExerciseDto patch(final Long id, final ExercisePatchDto dto) {
-        Exercise exercise = repository.findById(id)
-                .orElseThrow(() -> new ExerciseNotFoundException(id));
+        Exercise exercise = repository.requireById(id);
         Optional.ofNullable(dto.name()).ifPresent(exercise::name);
         Optional.ofNullable(dto.equipment()).ifPresent(exercise::equipment);
         Optional.ofNullable(dto.muscle()).ifPresent(exercise::muscle);
@@ -91,8 +89,7 @@ public final class ExerciseService {
      */
     @Transactional
     public ExerciseDto put(final Long id, final ExercisePutDto dto) {
-        Exercise exercise = repository.findById(id)
-                .orElseThrow(() -> new ExerciseNotFoundException(id));
+        Exercise exercise = repository.requireById(id);
         exercise.name(dto.name());
         exercise.equipment(dto.equipment());
         exercise.muscle(dto.muscle());
