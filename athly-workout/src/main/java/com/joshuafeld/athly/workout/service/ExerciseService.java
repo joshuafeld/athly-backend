@@ -4,7 +4,6 @@ import com.joshuafeld.athly.workout.dto.ExerciseDto;
 import com.joshuafeld.athly.workout.dto.ExercisePatchDto;
 import com.joshuafeld.athly.workout.dto.ExercisePostDto;
 import com.joshuafeld.athly.workout.dto.ExercisePutDto;
-import com.joshuafeld.athly.workout.exception.ExerciseNotFoundException;
 import com.joshuafeld.athly.workout.model.Exercise;
 import com.joshuafeld.athly.workout.repository.ExerciseRepository;
 import org.springframework.stereotype.Service;

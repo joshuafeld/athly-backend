@@ -12,13 +12,13 @@ import org.springframework.stereotype.Repository;
 public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
 
     /**
-     * Retrieves an entity by its id.
+     * Retrieves an exercise by its id.
      *
      * @param id must not be {@code null}
-     * @return the entity with the given {@code id}
+     * @return the exercise with the given {@code id}
      * @throws IllegalArgumentException if {@code id} is {@code null}
-     * @throws ExerciseNotFoundException if the entity with the given {@code id}
-     *                                   does not exist
+     * @throws ExerciseNotFoundException if the exercise with the given
+     *                                   {@code id} does not exist
      */
     default Exercise requireById(final Long id) {
         return findById(id).orElseThrow(() -> new ExerciseNotFoundException(id));
