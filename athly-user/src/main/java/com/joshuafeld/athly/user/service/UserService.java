@@ -8,6 +8,7 @@ import com.joshuafeld.athly.user.exception.UserNotFoundException;
 import com.joshuafeld.athly.user.model.User;
 import com.joshuafeld.athly.user.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,6 +36,7 @@ public final class UserService {
      * @param dto the data for the user
      * @return the data of the user
      */
+    @Transactional
     public UserDto post(final UserPostDto dto) {
         return toDto(repository.save(new User(dto.username(), dto.email(),
                 dto.firstName(), dto.lastName())));
@@ -45,6 +47,7 @@ public final class UserService {
      *
      * @return a list of all users' data
      */
+    @Transactional(readOnly = true)
     public List<UserDto> get() {
         return repository.findAll().stream().map(this::toDto).toList();
     }
@@ -55,6 +58,7 @@ public final class UserService {
      * @param id the id of the user
      * @return the data of the user
      */
+    @Transactional(readOnly = true)
     public UserDto get(final Long id) {
         return repository.findById(id).map(this::toDto)
                 .orElseThrow(() -> new UserNotFoundException(id));
@@ -67,6 +71,7 @@ public final class UserService {
      * @param dto the data for the user
      * @return the data of the user
      */
+    @Transactional
     public UserDto patch(final Long id, final UserPatchDto dto) {
         User user = repository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
@@ -84,6 +89,7 @@ public final class UserService {
      * @param dto the data for the user
      * @return the data of the user
      */
+    @Transactional
     public UserDto put(final Long id, final UserPutDto dto) {
         User user = repository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
@@ -99,6 +105,7 @@ public final class UserService {
      *
      * @param id the id of the user
      */
+    @Transactional
     public void delete(final Long id) {
         repository.deleteById(id);
     }
