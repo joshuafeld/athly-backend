@@ -10,7 +10,7 @@ import java.util.Objects;
 /**
  * A data transfer object for an exercise put request.
  */
-public class ExercisePutDto {
+public final class ExercisePutDto {
 
     @NotBlank
     @JsonProperty

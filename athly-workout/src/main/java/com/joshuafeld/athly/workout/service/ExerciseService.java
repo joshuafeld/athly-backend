@@ -8,12 +8,13 @@ import com.joshuafeld.athly.workout.exception.ExerciseNotFoundException;
 import com.joshuafeld.athly.workout.model.Exercise;
 import com.joshuafeld.athly.workout.repository.ExerciseRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 /**
- * A exercise service.
+ * An exercise service.
  */
 @Service
 public final class ExerciseService {
@@ -21,7 +22,7 @@ public final class ExerciseService {
     private final ExerciseRepository repository;
 
     /**
-     * Creates an instance of a {@code ExerciseService} class.
+     * Creates an instance of an {@code ExerciseService} class.
      *
      * @param repository the value for the {@code repository} component
      */
@@ -35,6 +36,7 @@ public final class ExerciseService {
      * @param dto the data for the exercise
      * @return the data of the exercise
      */
+    @Transactional
     public ExerciseDto post(final ExercisePostDto dto) {
         return toDto(repository.save(new Exercise(dto.name(), dto.equipment(),
                 dto.muscle(), dto.creator())));
@@ -45,6 +47,7 @@ public final class ExerciseService {
      *
      * @return a list of all exercises' data
      */
+    @Transactional(readOnly = true)
     public List<ExerciseDto> get() {
         return repository.findAll().stream().map(this::toDto).toList();
     }
@@ -55,6 +58,7 @@ public final class ExerciseService {
      * @param id the id of the exercise
      * @return the data of the exercise
      */
+    @Transactional(readOnly = true)
     public ExerciseDto get(final Long id) {
         return repository.findById(id).map(this::toDto)
                 .orElseThrow(() -> new ExerciseNotFoundException(id));
@@ -67,6 +71,7 @@ public final class ExerciseService {
      * @param dto the data for the exercise
      * @return the data of the exercise
      */
+    @Transactional
     public ExerciseDto patch(final Long id, final ExercisePatchDto dto) {
         Exercise exercise = repository.findById(id)
                 .orElseThrow(() -> new ExerciseNotFoundException(id));
@@ -84,6 +89,7 @@ public final class ExerciseService {
      * @param dto the data for the exercise
      * @return the data of the exercise
      */
+    @Transactional
     public ExerciseDto put(final Long id, final ExercisePutDto dto) {
         Exercise exercise = repository.findById(id)
                 .orElseThrow(() -> new ExerciseNotFoundException(id));
@@ -99,6 +105,7 @@ public final class ExerciseService {
      *
      * @param id the id of the exercise
      */
+    @Transactional
     public void delete(final Long id) {
         repository.deleteById(id);
     }

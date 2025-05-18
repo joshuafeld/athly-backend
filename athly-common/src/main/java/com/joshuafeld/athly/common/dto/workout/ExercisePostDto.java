@@ -11,7 +11,7 @@ import java.util.Objects;
 /**
  * A data transfer object for an exercise post request.
  */
-public class ExercisePostDto {
+public final class ExercisePostDto {
 
     @NotBlank
     @JsonProperty
