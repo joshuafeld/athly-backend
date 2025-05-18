@@ -1,7 +1,7 @@
-package com.joshuafeld.athly.common.dto.workout;
+package com.joshuafeld.athly.workout.dto;
 
-import com.joshuafeld.athly.common.model.workout.Equipment;
-import com.joshuafeld.athly.common.model.workout.Muscle;
+import com.joshuafeld.athly.workout.model.Equipment;
+import com.joshuafeld.athly.workout.model.Muscle;
 
 /**
  * A data transfer object for responses from the exercise service.

@@ -1,7 +1,5 @@
 package com.joshuafeld.athly.workout.model;
 
-import com.joshuafeld.athly.common.model.workout.Equipment;
-import com.joshuafeld.athly.common.model.workout.Muscle;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

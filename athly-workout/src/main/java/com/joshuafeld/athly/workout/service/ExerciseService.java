@@ -1,9 +1,9 @@
 package com.joshuafeld.athly.workout.service;
 
-import com.joshuafeld.athly.common.dto.workout.ExerciseDto;
-import com.joshuafeld.athly.common.dto.workout.ExercisePatchDto;
-import com.joshuafeld.athly.common.dto.workout.ExercisePostDto;
-import com.joshuafeld.athly.common.dto.workout.ExercisePutDto;
+import com.joshuafeld.athly.workout.dto.ExerciseDto;
+import com.joshuafeld.athly.workout.dto.ExercisePatchDto;
+import com.joshuafeld.athly.workout.dto.ExercisePostDto;
+import com.joshuafeld.athly.workout.dto.ExercisePutDto;
 import com.joshuafeld.athly.workout.exception.ExerciseNotFoundException;
 import com.joshuafeld.athly.workout.model.Exercise;
 import com.joshuafeld.athly.workout.repository.ExerciseRepository;

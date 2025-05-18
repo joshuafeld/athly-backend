@@ -1,9 +1,9 @@
 package com.joshuafeld.athly.workout.controller;
 
-import com.joshuafeld.athly.common.dto.workout.ExercisePatchDto;
-import com.joshuafeld.athly.common.dto.workout.ExercisePostDto;
-import com.joshuafeld.athly.common.dto.workout.ExerciseDto;
-import com.joshuafeld.athly.common.dto.workout.ExercisePutDto;
+import com.joshuafeld.athly.workout.dto.ExercisePatchDto;
+import com.joshuafeld.athly.workout.dto.ExercisePostDto;
+import com.joshuafeld.athly.workout.dto.ExerciseDto;
+import com.joshuafeld.athly.workout.dto.ExercisePutDto;
 import com.joshuafeld.athly.workout.service.ExerciseService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -90,7 +90,7 @@ public final class ExerciseController {
      */
     @PutMapping("/{id}")
     public ExerciseDto put(@PathVariable final Long id,
-                              @RequestBody @Valid final ExercisePutDto dto) {
+                           @RequestBody @Valid final ExercisePutDto dto) {
         return service.put(id, dto);
     }
 

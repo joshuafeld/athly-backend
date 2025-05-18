@@ -1,24 +1,27 @@
-package com.joshuafeld.athly.common.dto.workout;
+package com.joshuafeld.athly.workout.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.joshuafeld.athly.common.model.workout.Equipment;
-import com.joshuafeld.athly.common.model.workout.Muscle;
+import com.joshuafeld.athly.workout.model.Equipment;
+import com.joshuafeld.athly.workout.model.Muscle;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.util.Objects;
 
 /**
- * A data transfer object for an exercise put request.
+ * A data transfer object for an exercise post request.
  */
-public final class ExercisePutDto {
+public final class ExercisePostDto {
 
     @NotBlank
     @JsonProperty
     private String name;
 
+    @NotNull
     @JsonProperty
     private Equipment equipment;
 
+    @NotNull
     @JsonProperty
     private Muscle muscle;
 
@@ -114,7 +117,7 @@ public final class ExercisePutDto {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof ExercisePutDto dto)) {
+        if (!(o instanceof ExercisePostDto dto)) {
             return false;
         }
         return Objects.equals(name, dto.name)
@@ -143,7 +146,7 @@ public final class ExercisePutDto {
      */
     @Override
     public String toString() {
-        return "ExercisePutDto["
+        return "ExercisePostDto["
                 + "name=" + name
                 + ", equipment=" + equipment
                 + ", muscle=" + muscle
