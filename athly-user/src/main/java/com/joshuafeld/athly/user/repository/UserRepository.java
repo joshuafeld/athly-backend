@@ -14,11 +14,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
     /**
      * Retrieves a user by its id.
      *
-     * @param id must not be {@code null}
-     * @return the user with the given {@code id}
+     * @param id the id of the user
+     * @return the user
      * @throws IllegalArgumentException if {@code id} is {@code null}
-     * @throws UserNotFoundException if the entity with the given {@code id}
-     *                               does not exist
+     * @throws UserNotFoundException if the user does not exist
      */
     default User requireById(Long id) {
         return findById(id).orElseThrow(() -> new UserNotFoundException(id));
