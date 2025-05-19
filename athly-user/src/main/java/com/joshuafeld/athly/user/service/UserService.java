@@ -16,7 +16,7 @@ import java.util.Optional;
  * A user service.
  */
 @Service
-public final class UserService {
+public class UserService {
 
     private final UserRepository repository;
 

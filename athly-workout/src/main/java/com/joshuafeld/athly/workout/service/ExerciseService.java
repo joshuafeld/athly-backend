@@ -16,7 +16,7 @@ import java.util.Optional;
  * An exercise service.
  */
 @Service
-public final class ExerciseService {
+public class ExerciseService {
 
     private final ExerciseRepository repository;
 
