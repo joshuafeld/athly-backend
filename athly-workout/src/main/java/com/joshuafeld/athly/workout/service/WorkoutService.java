@@ -6,6 +6,7 @@ import com.joshuafeld.athly.workout.model.Segment;
 import com.joshuafeld.athly.workout.model.Workout;
 import com.joshuafeld.athly.workout.repository.WorkoutRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +34,7 @@ public class WorkoutService {
      * @param dto the data for the workout
      * @return the data of the workout
      */
+    @Transactional
     public WorkoutDto post(final WorkoutPostDto dto) {
         return toDto(repository.save(new Workout(dto.creator(),
                 new ArrayList<>())));
@@ -43,6 +45,7 @@ public class WorkoutService {
      *
      * @return a list of all workouts' data
      */
+    @Transactional(readOnly = true)
     public List<WorkoutDto> get() {
         return repository.findAll().stream().map(this::toDto).toList();
     }
@@ -53,6 +56,7 @@ public class WorkoutService {
      * @param id the id of the workout
      * @return the data of the workout
      */
+    @Transactional(readOnly = true)
     public WorkoutDto get(final Long id) {
         return toDto(repository.requireById(id));
     }
@@ -62,6 +66,7 @@ public class WorkoutService {
      *
      * @param id the id of the workout
      */
+    @Transactional
     public void delete(final Long id) {
         repository.deleteById(id);
     }
