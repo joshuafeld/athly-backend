@@ -19,6 +19,6 @@ public class AlphanumericValidator
     @Override
     public boolean isValid(final String value,
                            final ConstraintValidatorContext context) {
-        return value.matches("^[a-zA-Z0-9]*$]");
+        return value.matches("^[a-zA-Z0-9]*$");
     }
 }
