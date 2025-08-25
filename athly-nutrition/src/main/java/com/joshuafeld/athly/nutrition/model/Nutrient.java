@@ -25,7 +25,7 @@ public class Nutrient {
 
     private NutrientType type;
 
-    private Float value;
+    private Double value;
 
     /**
      * Creates an instance of a {@code Nutrient} class.
@@ -42,7 +42,7 @@ public class Nutrient {
      */
     public Nutrient(final Food food,
                     final NutrientType type,
-                    final Float value) {
+                    final Double value) {
         this.food = food;
         this.type = type;
         this.value = value;
@@ -98,7 +98,7 @@ public class Nutrient {
      *
      * @return the value of the {@code value} component
      */
-    public Float value() {
+    public Double value() {
         return value;
     }
 
@@ -107,7 +107,7 @@ public class Nutrient {
      *
      * @param value the value for the {@code value} component
      */
-    public void value(final Float value) {
+    public void value(final Double value) {
         this.value = value;
     }
 }

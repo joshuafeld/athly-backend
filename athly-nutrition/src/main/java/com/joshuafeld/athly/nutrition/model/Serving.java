@@ -25,7 +25,7 @@ public class Serving {
 
     private ServingType type;
 
-    private Float value;
+    private Double value;
 
     private Unit unit;
 
@@ -45,7 +45,7 @@ public class Serving {
      */
     public Serving(final Food food,
                 final ServingType type,
-                final Float value,
+                final Double value,
                 final Unit unit) {
         this.food = food;
         this.type = type;
@@ -103,7 +103,7 @@ public class Serving {
      *
      * @return the value of the {@code value} component
      */
-    public Float value() {
+    public Double value() {
         return value;
     }
 
@@ -112,7 +112,7 @@ public class Serving {
      *
      * @param value the value for the {@code value} component
      */
-    public void value(final Float value) {
+    public void value(final Double value) {
         this.value = value;
     }
 
