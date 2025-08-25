@@ -35,6 +35,13 @@ public class Food {
     )
     private List<Nutrient> nutrients;
 
+    @OneToMany(
+            mappedBy = "food",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Serving> servings;
+
     private Long creator;
 
     /**
@@ -49,15 +56,18 @@ public class Food {
      * @param name the value for the {@code name} component
      * @param manufacturer the value for the {@code manufacturer} component
      * @param nutrients the value for the {@code nutrients} component
+     * @param servings the value for the {@code servings} component
      * @param creator the value for the {@code creator} component
      */
     public Food(final String name,
                 final String manufacturer,
                 final List<Nutrient> nutrients,
+                final List<Serving> servings,
                 final Long creator) {
         this.name = name;
         this.manufacturer = manufacturer;
         this.nutrients = nutrients;
+        this.servings = servings;
         this.creator = creator;
     }
 
@@ -123,6 +133,24 @@ public class Food {
      */
     public void nutrients(final List<Nutrient> nutrients) {
         this.nutrients = nutrients;
+    }
+
+    /**
+     * Returns the value of the {@code servings} component.
+     *
+     * @return the value of the {@code servings} component
+     */
+    public List<Serving> servings() {
+        return servings;
+    }
+
+    /**
+     * Sets the value of the {@code servings} component.
+     *
+     * @param servings the value for the {@code servings} component
+     */
+    public void servings(final List<Serving> servings) {
+        this.servings = servings;
     }
 
     /**
